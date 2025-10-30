@@ -30,8 +30,18 @@ public class Deck2 {
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
 	 */
-	public Deck2(String[] ranks, String[] suits, int[] values) {
+	public Deck2(String[] ranks, String[] suits, int[] values) 
+	{
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new ArrayList<Card2>();
+		
+		for(int i = 0; i < suits.length; i++)
+		{
+			for(int j = 0; j < ranks.length; j++)
+			{
+				cards.add(new Card2(ranks[j], suits[i], values[j]));
+			}
+		}
 	}
 
 
@@ -41,7 +51,7 @@ public class Deck2 {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return true;
+		return cards.size() == 0;
 	}
 
 	/**
@@ -50,7 +60,7 @@ public class Deck2 {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return -1;
+		return cards.size();
 	}
 
 	/**
@@ -68,7 +78,11 @@ public class Deck2 {
 	 */
 	public Card2 deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return new Card2("","",-1);
+		int topCardNumber = cards.size() - 1;
+		
+		Card2 tempCard = cards.remove(topCardNumber);
+		
+		return tempCard;
 	}
 
 	/**
