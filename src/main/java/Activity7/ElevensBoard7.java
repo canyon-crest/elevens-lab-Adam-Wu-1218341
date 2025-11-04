@@ -156,6 +156,16 @@ public class ElevensBoard7 {
 		}
 		return s;
 	}
+	
+	public static void printCards(ElevensBoard board) 
+	{
+	    List<Integer> cIndexes = board.cardIndexes();
+	    
+	    for (Integer index : cIndexes) 
+	    {
+	        System.out.println(board.cardAt(index));
+	    }
+	}
 
 	/**
 	 * Determine whether or not the game has been won,

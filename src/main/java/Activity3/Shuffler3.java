@@ -8,7 +8,7 @@ public class Shuffler3 {
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 2;
 
 
 	/**
@@ -52,6 +52,29 @@ public class Shuffler3 {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[values.length];
+		
+		int k = 0;
+		int middle = (values.length + 1) / 2;
+		
+		for(int i = 0; i < middle; i++)
+		{
+			shuffled[k] = values[i];
+			k = k + 2;
+		}
+		
+		k = 1;
+		
+		for(int j = middle; j < values.length; j++)
+		{
+			shuffled[k] = values[j];
+			k = k + 2;
+		}
+		
+		for(int l = 0; l < values.length; l++)
+		{
+			values[l] = shuffled[l];
+		}
 	}
 
 	/**
@@ -67,5 +90,85 @@ public class Shuffler3 {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		
+		for(int k = values.length - 1; k > 0; k--)
+		{
+			int r = (int) (Math.random() * (k + 1));
+			
+			int temp = values[k];
+			values[k] = values[r];
+			values[r] = temp;
+		}
+	}
+	
+	public static String flip() 
+	{
+	    double r = Math.random();
+
+	    if (r < 2.0 / 3.0) 
+	    {
+	        return "heads";
+	    } 
+	    
+	    else 
+	    {
+	        return "tails";
+	    }
+	}
+	
+	public static boolean arePermutations(int[] a, int[] b) 
+	{
+	    if (a == null || b == null || a.length != b.length) 
+	    {
+	        return false;
+	    }
+
+	    int[] aCopy = copyArray(a);
+	    int[] bCopy = copyArray(b);
+
+	    selectionSort(aCopy);
+	    selectionSort(bCopy);
+
+	    for (int i = 0; i < aCopy.length; i++) 
+	    {
+	        if (aCopy[i] != bCopy[i]) 
+	        {
+	            return false;
+	        }
+	    }
+
+	    return true;
+	}
+
+	private static int[] copyArray(int[] source) 
+	{
+	    int[] result = new int[source.length];
+	    
+	    for (int i = 0; i < source.length; i++) 
+	    {
+	        result[i] = source[i];
+	    }
+	    
+	    return result;
+	}
+
+	private static void selectionSort(int[] arr) 
+	{
+	    for (int i = 0; i < arr.length - 1; i++) 
+	    {
+	        int minIndex = i;
+	        
+	        for (int j = i + 1; j < arr.length; j++) 
+	        {
+	            if (arr[j] < arr[minIndex]) 
+	            {
+	                minIndex = j;
+	            }
+	        }
+	        
+	        int temp = arr[i];
+	        arr[i] = arr[minIndex];
+	        arr[minIndex] = temp;
+	    }
 	}
 }
